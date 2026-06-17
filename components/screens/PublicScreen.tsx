@@ -22,7 +22,7 @@ export default function PublicScreen({ app }: { app: PetQRApi }) {
             <PawIcon size={17} strokeWidth={2.2} />
           </div>
           <div className="whitespace-nowrap font-display text-base font-bold text-ink-2">
-            Pet QR
+            Tagnong
           </div>
         </div>
         <button

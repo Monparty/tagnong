@@ -3,7 +3,7 @@ import { Baloo_2, Prompt, Noto_Sans_Thai } from "next/font/google";
 import Providers from "./providers";
 import "./globals.css";
 
-// "Baloo 2" covers Latin display (the "Pet QR" wordmark). Its Thai sibling
+// "Baloo 2" covers Latin display (the "Tagnong" wordmark). Its Thai sibling
 // "Baloo Thai 2" isn't in next/font's catalog, so it's loaded via <link> below
 // and referenced in the --font-display stack for Thai headings.
 const baloo = Baloo_2({
@@ -26,7 +26,7 @@ const notoThai = Noto_Sans_Thai({
 });
 
 export const metadata: Metadata = {
-  title: "Pet QR — ปลอกคอ QR สำหรับน้อง",
+  title: "Tagnong — ปลอกคอ QR สำหรับน้อง",
   description:
     "ระบบ QR code ติดปลอกคอสัตว์เลี้ยง เมื่อน้องหาย คนที่เจอสแกน QR แล้วแจ้งเจ้าของพร้อมตำแหน่งได้ทันที",
 };

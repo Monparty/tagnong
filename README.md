@@ -1,11 +1,11 @@
-# Tagnong — Pet QR Code
+# Tagnong — Tagnong Code
 
 ระบบ QR code ติดปลอกคอสัตว์เลี้ยง — เมื่อน้องหาย คนที่เจอสแกน QR แล้วแจ้งเจ้าของพร้อมตำแหน่งได้ทันที
 
 **Stack:** Next.js 16 (App Router) · React 19 · Tailwind CSS v4 · Ant Design v5 · Mobile-first
 **สไตล์:** Claymorphism — ผิวนุ่ม นูนเหมือนดินปั้น มุมโค้งมน เงาคู่ใน-นอก โทนส้มอุ่น
 
-หน้านี้สร้างจาก design handoff bundle ของ Claude Design (`Pet QR Code.dc.html`) และพอร์ตมาเป็น React/Next.js แบบ pixel-faithful
+หน้านี้สร้างจาก design handoff bundle ของ Claude Design (`Tagnong Code.dc.html`) และพอร์ตมาเป็น React/Next.js แบบ pixel-faithful
 
 ## เริ่มใช้งาน
 

@@ -1,7 +1,7 @@
 import type { ThemeConfig } from "antd";
 
 /**
- * Ant Design v5 theme for the Pet QR claymorphism system.
+ * Ant Design v5 theme for the Tagnong claymorphism system.
  * antd handles core tokens / radii / control heights; the "double" clay
  * shadows are applied via Tailwind `shadow-clay*` classes on top, so we
  * disable antd's own shadows here.
