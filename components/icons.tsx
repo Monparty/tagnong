@@ -15,7 +15,7 @@ function base({ size = 24, ...props }: IconProps) {
   };
 }
 
-/** Paw — the Pet QR mascot mark */
+/** Paw — the Tagnong mascot mark */
 export function PawIcon({ strokeWidth = 2, ...props }: IconProps) {
   return (
     <svg {...base(props)} strokeWidth={strokeWidth}>

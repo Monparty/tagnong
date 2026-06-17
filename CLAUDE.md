@@ -13,7 +13,7 @@ There is no test suite or test runner configured in this project.
 
 ## Architecture
 
-This is a Next.js (App Router) + TypeScript front-end prototype for "Pet QR" (ปลอกคอ QR สำหรับน้อง), a Thai-language demo of a QR pet-collar product. There is no backend, database, or API layer — it's a single client-rendered page that simulates the full user flow with in-memory React state.
+This is a Next.js (App Router) + TypeScript front-end prototype for "Tagnong" (ปลอกคอ QR สำหรับน้อง), a Thai-language demo of a QR pet-collar product. There is no backend, database, or API layer — it's a single client-rendered page that simulates the full user flow with in-memory React state.
 
 **State machine, not routing.** `app/page.tsx` renders one `Screen` at a time (`"scan" | "register" | "success" | "public" | "edit" | "tracking"`) from a single `usePetQR()` hook instance, switching with conditional rendering rather than Next.js routes. All screens live in `components/screens/` and receive the entire app API as a single `app: PetQRApi` prop — there's no prop drilling of individual fields, no context, no global store.
 

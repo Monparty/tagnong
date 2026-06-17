@@ -13,7 +13,7 @@ export default function ScanScreen({ app }: { app: PetQRApi }) {
           <PawIcon size={22} strokeWidth={2.2} />
         </div>
         <div className="whitespace-nowrap font-display text-xl font-bold tracking-[0.2px] text-ink">
-          Pet QR
+          Tagnong
         </div>
       </div>
 
