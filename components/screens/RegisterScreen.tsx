@@ -175,9 +175,10 @@ export default function RegisterScreen({ app }: { app: PetQRApi }) {
           variant="cta"
           className="h-[54px] text-[17px]"
           onClick={app.submitRegister}
+          disabled={app.saving}
           leftIcon={<PawIcon size={22} strokeWidth={2.2} />}
         >
-          ลงทะเบียนน้อง
+          {app.saving ? "กำลังบันทึก..." : "ลงทะเบียนน้อง"}
         </ClayButton>
       </div>
     </div>
