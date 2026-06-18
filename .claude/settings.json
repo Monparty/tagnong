@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(supabase --version)",
+      "Bash(curl -s 'https://ynwicrovdmmyqadewrwp.supabase.co/rest/v1/pets?select=*&limit=1' -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlud2ljcm92ZG1teXFhZGV3cndwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2ODQ4ODAsImV4cCI6MjA5NzI2MDg4MH0.6vaMaY-9n0fS2NrOPOQLvfsCX0nsnYaRuxoCMe5ga3c' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlud2ljcm92ZG1teXFhZGV3cndwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2ODQ4ODAsImV4cCI6MjA5NzI2MDg4MH0.6vaMaY-9n0fS2NrOPOQLvfsCX0nsnYaRuxoCMe5ga3c')",
+      "Bash(curl -s -I 'https://ynwicrovdmmyqadewrwp.supabase.co/rest/v1/pets?select=*&limit=0' -H 'apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlud2ljcm92ZG1teXFhZGV3cndwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE2ODQ4ODAsImV4cCI6MjA5NzI2MDg4MH0.6vaMaY-9n0fS2NrOPOQLvfsCX0nsnYaRuxoCMe5ga3c')"
+    ]
+  }
+}

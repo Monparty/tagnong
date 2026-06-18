@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
+import { supabase } from "./supabase";
 import {
   DEMO_PASSWORD,
   initialForm,
@@ -18,6 +19,7 @@ export interface PetQRApi {
   form: PetForm;
   pet: Pet;
   formErr: string;
+  saving: boolean;
   notified: boolean;
   gateOpen: boolean;
   gateError: boolean;
@@ -37,7 +39,7 @@ export interface PetQRApi {
 
   // form (register)
   setForm: <K extends keyof PetForm>(key: K, value: PetForm[K]) => void;
-  submitRegister: () => void;
+  submitRegister: () => void | Promise<void>;
 
   // pet (edit)
   setPet: <K extends keyof Pet>(key: K, value: Pet[K]) => void;
@@ -58,6 +60,8 @@ export function usePetQR(): PetQRApi {
   const [form, setFormState] = useState<PetForm>(initialForm);
   const [pet, setPetState] = useState<Pet>(initialPet);
   const [formErr, setFormErr] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [petId, setPetId] = useState<string | null>(null);
   const [notified, setNotified] = useState(false);
   const [gateOpen, setGateOpen] = useState(false);
   const [gateError, setGateError] = useState(false);
@@ -84,27 +88,61 @@ export function usePetQR(): PetQRApi {
     setPetState((p) => ({ ...p, [key]: value }));
   }, []);
 
-  const submitRegister = useCallback(() => {
+  const submitRegister = useCallback(async () => {
     if (!form.name.trim() || !form.contact.trim() || !form.pwd.trim()) {
       setFormErr("กรอกชื่อน้อง ช่องทางติดต่อ และรหัสผ่านก่อนนะ");
       return;
     }
+
+    setSaving(true);
+    setFormErr("");
+
+    const { data, error } = await supabase
+      .from("pets")
+      .insert({
+        name: form.name.trim(),
+        species: form.species,
+        breed: form.breed.trim() || null,
+        color: form.color.trim() || null,
+        health: form.health.trim() || null,
+        contact_type: form.contactType,
+        contact: form.contact.trim(),
+        password: form.pwd,
+        lost_mode: false,
+      })
+      .select()
+      .single();
+
+    setSaving(false);
+
+    if (error) {
+      setFormErr(`บันทึกไม่สำเร็จ: ${error.message}`);
+      return;
+    }
+
+    setPetId(data.id);
     setPetState({
-      name: form.name.trim(),
-      species: form.species,
-      breed: form.breed.trim() || "ไม่ระบุ",
-      color: form.color.trim() || "—",
-      health: form.health.trim() || "—",
-      contact: form.contact.trim(),
-      lostMode: false,
+      name: data.name,
+      species: data.species as Species,
+      breed: data.breed || "ไม่ระบุ",
+      color: data.color || "—",
+      health: data.health || "—",
+      contact: data.contact,
+      lostMode: data.lost_mode,
     });
     setPetPwd(form.pwd);
     setScreen("success");
   }, [form]);
 
   const toggleLost = useCallback(() => {
-    setPetState((p) => ({ ...p, lostMode: !p.lostMode }));
-  }, []);
+    setPetState((p) => {
+      const next = !p.lostMode;
+      if (petId) {
+        void supabase.from("pets").update({ lost_mode: next }).eq("id", petId);
+      }
+      return { ...p, lostMode: next };
+    });
+  }, [petId]);
 
   const notifyOwner = useCallback(() => setNotified(true), []);
 
@@ -141,6 +179,7 @@ export function usePetQR(): PetQRApi {
     form,
     pet,
     formErr,
+    saving,
     notified,
     gateOpen,
     gateError,
