@@ -54,7 +54,7 @@ export interface PetQRApi {
 }
 
 export function usePetQR(): PetQRApi {
-  const [screen, setScreen] = useState<Screen>("scan");
+  const [screen, setScreen] = useState<Screen>("register");
   const [form, setFormState] = useState<PetForm>(initialForm);
   const [pet, setPetState] = useState<Pet>(initialPet);
   const [formErr, setFormErr] = useState("");

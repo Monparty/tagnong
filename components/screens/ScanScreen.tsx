@@ -41,11 +41,14 @@ export default function ScanScreen({ app }: { app: PetQRApi }) {
         setCam("idle");
     }, []);
 
-    // A real collar QR points at the public "found me" page — go there on a hit.
-    const onDetected = useCallback(() => {
-        stop();
-        app.go("public");
-    }, [stop, app]);
+    // On a successful read: release the camera and show the decoded value.
+    const onDetected = useCallback(
+        (value: string) => {
+            stop();
+            window.alert(`สแกน QR สำเร็จ:\n${value}`);
+        },
+        [stop],
+    );
 
     const startDetectLoop = useCallback(() => {
         const Ctor = (window as unknown as { BarcodeDetector?: BarcodeDetectorCtor }).BarcodeDetector;
@@ -68,8 +71,9 @@ export default function ScanScreen({ app }: { app: PetQRApi }) {
                 busy = true;
                 try {
                     const codes = await detector.detect(video);
-                    if (codes[0]?.rawValue) {
-                        onDetected();
+                    const value = codes[0]?.rawValue;
+                    if (value) {
+                        onDetected(value);
                         return;
                     }
                 } catch {
